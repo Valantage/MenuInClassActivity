@@ -62,11 +62,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.action_start -> {
+                binder?.start(100)
+                return true
+            }
+            R.id.action_stop -> {
+                binder?.stop()
+                return true
+            }
+            R.id.action_pause -> {
+                binder?.pause()
+                return true
+            }
+            else -> return false
+        }
+        return true
     }
 
     override fun onDestroy() {
